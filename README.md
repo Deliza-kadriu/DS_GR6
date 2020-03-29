@@ -42,3 +42,5 @@ Ngjashem me enkriptimin krijohet edhe ajo e dekriptimit vetem se formules nuk i 
 i heket ai gjithashtu i shtohet edhe numri 26 per shkak qe te del vlera pozitive.
 Gjithashtu edhe bruteForce eshte e ngjashme me metoden enkript vetem ktu Key merr vlera prej 1 deri ne 25.
 Referencat:https://www.w3schools.com/ https://www.geeksforgeeks.org/java/, Libri :Introduction to Java programming
+
+![photos](Capture3.png)
