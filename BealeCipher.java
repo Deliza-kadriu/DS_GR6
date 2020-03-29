@@ -3,7 +3,7 @@ import java.io.*;
 import java.nio.file.*;
 
 public class BealeCipher {
-	public static void encrypt(String path, String encryptWord) {
+	public static void encrypt(String path, String plaintext) {
 		try {
 			File file = new File(path);
 			if (!file.exists())
@@ -11,15 +11,14 @@ public class BealeCipher {
 
 			String s1 = new String(Files.readAllBytes(Paths.get(path)));
 			String s = s1.toLowerCase();
-			for (int i = 0; i < encryptWord.length(); i++) {
+			for (int i = 0; i < plaintext.length(); i++) {
 				int count = 0;
 				int t = 0, n = 0;
 
 				for (String st : s.split("\\s+")) {
 
-					n++;
 					count++;
-					String ch = Character.toString(encryptWord.charAt(i)).replaceAll("\\d+", " ");
+					String ch = Character.toString(plaintext.charAt(i)).replaceAll("\\d+", " ");
 
 					if (st.startsWith(ch.toLowerCase())) {
 
@@ -28,7 +27,7 @@ public class BealeCipher {
 						t++;
 					}
 				}
-				if (t < n) {
+				if (t < count) {
 					System.out.print(count + " ");
 				}
 			}
@@ -69,13 +68,13 @@ public class BealeCipher {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Couldn't find the file.");
+			System.out.println("Couldn't find the letter.");
 			System.exit(0);
 		}
 
 	}
 
-	// Classen isNumeric e kam marr te gatshme nga faqja :
+	// metoden isNumeric e kam marr te gatshme nga faqja :
 	// https://www.baeldung.com/java-check-string-number
 	public static boolean isNumeric(String strNum) {
 		if (strNum == null) {
