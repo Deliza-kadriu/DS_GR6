@@ -43,9 +43,16 @@ i heket ai gjithashtu i shtohet edhe numri 26 per shkak qe te del vlera pozitive
 Gjithashtu edhe bruteForce eshte e ngjashme me metoden enkript vetem ktu Key merr vlera prej 1 deri ne 25.
 Referencat:https://www.w3schools.com/ https://www.geeksforgeeks.org/java/, Libri :Introduction to Java programming
 
-![photos](photos/Capture3.png)
+Shembulli nga Beale :
 ![photos](photos/Capture4.jpg)
 ![photos](photos/Capture5.jpg)
+Shembulli nga Caesari :
+![photos](photos/Capture3.png)
 ![photos](photos/Capture6.jpg)
 ![photos](photos/Capture7.jpg)
+Shembulli nga Vigenere :
+![photos](photos/Capture8.jpg)
+![photos](photos/Capture9.jpg)
+
+
 
