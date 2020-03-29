@@ -12,9 +12,8 @@ tjera perveq shkronjave te alfabetit, me kete rast kemi krijuar nje numerues int
 hapesira ' ' , numer apo ndonje simbol/karakter tjeter jashte rangut te shkronjave me q'rast ato karaktere vetem i pershkruhen tekstit te 
 enkriptuar ne dalje ne pozitat perkatese. Duhet cekur se kemi bere edhe funksionin i cili kontrollon nese qelesi permbane ndonje karakter 
 jasht shkronjave me q'rast programi na tregon se kemi perdorur karaktere te ndaluara dhe nuk lejon qe te kaloj programi ne enkriptim fare. 
-Nenkomanda e dekriptimit perdore te njejtin qeles qe eshte perdorur per enkriptim dhe permbane te njejtat kushte, vetem pershtatja e formules 
-per dekriptim dallon pasi ketu kemi zbritje e jo mbledhje.
-Referencat: Per gjenerimin e qelesit: www.geeksforgeeks.org , ndihmese ne kod: www.dreamincode.net
+Nenkomanda e dekriptimit perdore te njejtin qeles qe eshte perdorur per enkriptim dhe permbane te njejtat kushte, vetem pershtatja e formules per dekriptim dallon pasi ketu kemi zbritje e jo mbledhje.
+Referencat: Per gjenerimin e qelesit: www.geeksforgeeks.org 
 
 -Komanda Beale :
 encrypt(String path, String encryptWord):
