@@ -50,6 +50,7 @@ public class DSgr6 {
 				else if (args[1].equals("decrypt")) {
 					System.out.println("Dekriptimi sipas Kodit Beale: ");
 					BealeCipher.decrypt(args[2], args[3]);
+					
 				}
 
 				else {
@@ -72,7 +73,7 @@ public class DSgr6 {
 			System.out.println("Metodat : encrypt, decrypt, bruteforce");
 			System.out.println(
 					"Celesi/path: Te metoda e caesarit eshte numer , te vigenere eshte fjale kurse te beale eshte path");
-			System.out.println("Teksti: Tekst i cfaredoeshem");
+			System.out.println("Teksti: Tekst i cfaredoeshem tek metoda e bealit duhet te jete nje varg i numave i ndare me presje p.sh: 14,10,10,54");
 			System.exit(1);
 		}
 	}
