@@ -47,5 +47,5 @@ Referencat:https://www.w3schools.com/ https://www.geeksforgeeks.org/java/, Libri
 ![photos](photos/Capture4.jpg)
 ![photos](photos/Capture5.jpg)
 ![photos](photos/Capture6.jpg)
-![photos](photos/Capture7.png)
+![photos](photos/Capture7.jpg)
 
