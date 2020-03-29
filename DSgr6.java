@@ -10,9 +10,9 @@ public class DSgr6 {
 					CaesarCipher.decrypt(args[3], Integer.parseInt(args[2]));
 				} else if (args[1].equals("bruteforce")) {
 					System.out.println("Dekriptimet me BruteForce:");
-					CaesarCipher.bruteForce(args[2]);
+					CaesarCipher.bruteForce(args[3]);
 				} else {
-					System.out.print("Shkrimi nuk eshte i sakte te metoda e Caesaar metoda eshte gabim duhet te jete si ne vazhdim  :");
+					System.out.println("Shkrimi nuk eshte i sakte te metoda e Caesaar metoda eshte gabim duhet te jete si ne vazhdim  :");
 					System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
 				}
 			} catch (Exception e) {
@@ -32,7 +32,7 @@ public class DSgr6 {
 				}
 
 				else {
-					System.out.print("Shkrimi nuk eshte i sakte te metoda e Vigenere metoda eshte gabim duhet te jete si ne vazhdim  : ");
+					System.out.println("Shkrimi nuk eshte i sakte te metoda e Vigenere metoda eshte gabim duhet te jete si ne vazhdim  : ");
 					System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
 				}
 			} catch (Exception e) {
@@ -53,7 +53,7 @@ public class DSgr6 {
 				}
 
 				else {
-					System.out.print("Shkrimi nuk eshte i sakte te metoda e Beale metoda eshte gabim duhet te jete si ne vazhdim  : ");
+					System.out.println("Shkrimi nuk eshte i sakte te metoda e Beale metoda eshte gabim duhet te jete si ne vazhdim  : ");
 					System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
 				}
 			} catch (Exception e) {
