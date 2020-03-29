@@ -1,6 +1,4 @@
-import java.io.*;
-
-public class Vigenere {
+public class VigenereCipher {
 
 static String generateKey(String plaintext, String keyWord) 
 { 
@@ -19,6 +17,7 @@ static String generateKey(String plaintext, String keyWord)
 	static String VigenereEncrypt(String plaintext, String keyWord){
 	    
 	    String encryptedWord="";
+		int c=0;
 	    for(int i=0; i<plaintext.length(); i++){
 
 	        if (( plaintext.charAt(i) >= 'A' || plaintext.charAt(i) >= 'a') && (plaintext.charAt(i) <= 'Z' || plaintext.charAt(i) <= 'z') || (plaintext.charAt(i) == ' '))
