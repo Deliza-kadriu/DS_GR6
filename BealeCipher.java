@@ -51,7 +51,7 @@ public class BealeCipher {
 			for (String st1 : s.split(" ")) {
 				count++;
 			}
-			for (String st : decryptWord.split("\\s+")) {
+			for (String st : decryptWord.split(",")) {
 				Boolean bool = isNumeric(st);
 				int n;
 				if (bool) {
