@@ -44,3 +44,8 @@ Gjithashtu edhe bruteForce eshte e ngjashme me metoden enkript vetem ktu Key mer
 Referencat:https://www.w3schools.com/ https://www.geeksforgeeks.org/java/, Libri :Introduction to Java programming
 
 ![photos](photos/Capture3.png)
+![photos](photos/Capture4.jpg)
+![photos](photos/Capture5.jpg)
+![photos](photos/Capture6.jpg)
+![photos](photos/Capture7.png)
+
