@@ -27,11 +27,21 @@ public class ExportKey {
 	    }
 	    return null;
 	}
-		 private static void printKey(Document xmlDocument, String fileName)
-	    {
+		 
+	private static void printKey(Document xmlDocument, String fileName) {
 	        TransformerFactory tf = TransformerFactory.newInstance();
 	        Transformer transformer;
-	         
+	        try {
+	            transformer = tf.newTransformer();
+	             
+	            StringWriter writer = new StringWriter();
+	            transformer.transform(new DOMSource(xmlDocument), new StreamResult(writer));
+	            String xmlString = writer.getBuffer().toString();   
+	            System.out.println(xmlString);          
+	             
+	            FileOutputStream outStream = new FileOutputStream(new File(fileName)); 
+	            transformer.transform(new DOMSource(xmlDocument), new StreamResult(outStream));
+	        }
 	        catch (TransformerException e) 
 	        {
 	            e.printStackTrace();
