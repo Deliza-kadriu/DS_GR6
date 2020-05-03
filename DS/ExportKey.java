@@ -8,6 +8,26 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 
 public class ExportKey {
+	private static Document convertXMLFileToXMLDocument(String filePath) 
+	{
+	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	     
+	    DocumentBuilder builder = null;
+	    try
+	    {
+	        builder = factory.newDocumentBuilder();
+	         
+	        Document xmlDocument = builder.parse(new File(filePath));
+	         
+	        return xmlDocument;
+	    } 
+	    catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	
 
 
 }
