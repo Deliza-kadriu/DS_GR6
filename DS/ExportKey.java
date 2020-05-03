@@ -27,7 +27,20 @@ public class ExportKey {
 	    }
 	    return null;
 	}
-	
+		 private static void printKey(Document xmlDocument, String fileName)
+	    {
+	        TransformerFactory tf = TransformerFactory.newInstance();
+	        Transformer transformer;
+	         
+	        catch (TransformerException e) 
+	        {
+	            e.printStackTrace();
+	        }
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+	    }
 
 
 }
