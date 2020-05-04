@@ -70,4 +70,63 @@ public class CreateUser {
                 
                 BigInteger de = keyS.getPrivateExponent();
                 String destr = new String(Base64.getEncoder().encodeToString(de.toByteArray()));
+		              
+		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+
+                Document document = documentBuilder.newDocument();
+                Element root = document.createElement("RSAKeyValue");
+                document.appendChild(root);
+		    
+                Element moduli = document.createElement("Modulus");
+                moduli.appendChild(document.createTextNode(modstr));
+                root.appendChild(moduli);
+		    
+                Element exponenti = document.createElement("Exponent");
+                exponenti.appendChild(document.createTextNode(expstr));
+                root.appendChild(exponenti);
+		    
+                Element p = document.createElement("P");
+                p.appendChild(document.createTextNode(prPstr));
+                root.appendChild(p);
+		    
+                Element q = document.createElement("Q");
+                q.appendChild(document.createTextNode(prQstr));
+                root.appendChild(q);
+		    
+                Element dp = document.createElement("DP");
+                dp.appendChild(document.createTextNode(DPpstr));
+                root.appendChild(dp);
+		    
+                Element dq = document.createElement("DQ");
+                dq.appendChild(document.createTextNode(DQqstr));
+                root.appendChild(dq);
+		    
+                Element inversi = document.createElement("InverseQ");
+                inversi.appendChild(document.createTextNode(inversiistr));
+                root.appendChild(inversi);
+		    
+                Element d = document.createElement("D");
+                d.appendChild(document.createTextNode(destr));
+                root.appendChild(d);
+
+	        //Transformimi prej .txt ne .xml 
+						
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+                DOMSource domSource = new DOMSource(document);
+                StreamResult streamResult = new StreamResult(filePriv);
+                transformer.transform(domSource, streamResult);
+
+                System.out.println("Eshte krijuar celesi privat " +filePriv.getPath());
+            } 
+        
+        } catch (NoSuchAlgorithmException e) {
+
+            System.out.println("Exception thrown : " + e);
+        }
+}
 }
