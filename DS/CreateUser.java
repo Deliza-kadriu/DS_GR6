@@ -21,6 +21,7 @@ public class CreateUser {
 
     public static void generateKey(String name) throws Exception {
         try {
+	    //Gjenerimi i RSA celesave 
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
             kpg.initialize(2048);
 			
@@ -28,7 +29,7 @@ public class CreateUser {
 			
             PublicKey publicK = keyP.getPublic();
             PrivateKey privateK = keyP.getPrivate();
-		
+	    
             PrivateKeyXML(privateK, name);
             PublicKeyXML(publicK, name);
             } 
@@ -38,9 +39,7 @@ public class CreateUser {
     }
 	public static void PrivateKeyXML(PrivateKey privateKey, String name) throws Exception {
         try {
-            File file = new File("c://RSAKeys");
-	    file.mkdir();
-	    File filePriv = new File(file.getPath()+"//"+ name +".xml");
+            File filePriv = new File("keys/", name + ".xml");
 
 	    if (filePriv.exists()){
 		    System.out.print("Gabim: Celesi '" + name + "' ekziston paraprakisht!");
@@ -49,7 +48,7 @@ public class CreateUser {
                 KeyFactory keyF = KeyFactory.getInstance("RSA");
                 RSAPrivateCrtKeySpec keyS = keyF.getKeySpec(privateKey, RSAPrivateCrtKeySpec.class);
 
-                //Kthimi nga BigInteger ne Base64
+                //Marrja dhe kthimi i elementeve te RSA celesit nga BigInteger ne Base64
                 BigInteger mod = keyS.getModulus();
                 String modstr = new String(Base64.getEncoder().encodeToString(mod.toByteArray()));
 
@@ -73,7 +72,8 @@ public class CreateUser {
                 
                 BigInteger de = keyS.getPrivateExponent();
                 String destr = new String(Base64.getEncoder().encodeToString(de.toByteArray()));
-		              
+		 
+		//Krijimi i dokumentit dhe ruajtja e elementeve te RSA celesit ne te
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
@@ -113,7 +113,7 @@ public class CreateUser {
                 d.appendChild(document.createTextNode(destr));
                 root.appendChild(d);
 
-	        //Transformimi ne xml file
+	        //Transformimi ne xml file 
 						
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
@@ -124,7 +124,7 @@ public class CreateUser {
                 StreamResult streamResult = new StreamResult(filePriv);
                 transformer.transform(domSource, streamResult);
 
-                System.out.println("Eshte krijuar celesi privat " +filePriv.getPath());
+                System.out.println("Eshte krijuar celesi privat 'keys/" + name + ".xml'");
             } 
         
         } catch (NoSuchAlgorithmException e) {
@@ -135,10 +135,7 @@ public class CreateUser {
 	public static void PublicKeyXML(PublicKey publicKey, String name) throws Exception {
 
         try {
-
-        File file = new File("c://RSAKeys");
-	    file.mkdir();
-	    File filePub = new File(file.getPath()+"//"+ name +".pub.xml");
+        File filePub = new File("keys/", name + ".pub.xml");
 
             if (filePub.exists()){
             	System.out.print("");
@@ -149,13 +146,14 @@ public class CreateUser {
                 KeyFactory keyF = KeyFactory.getInstance("RSA");
                 RSAPublicKeySpec keyS = keyF.getKeySpec(publicKey, RSAPublicKeySpec.class);
 
+		//Marrja dhe kthimi i elementeve te RSA celesit nga BigInteger ne Base64
                 BigInteger mod = keyS.getModulus();
                 String modstr = new String(Base64.getEncoder().encodeToString(mod.toByteArray()));
 
                 BigInteger exp = keyS.getPublicExponent();
                 String expstr = new String(Base64.getEncoder().encodeToString(exp.toByteArray()));
 
-                
+                //Krijimi i dokumentit dhe ruajtja e elementeve te RSA celesit ne te
                 DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
                 Document document = documentBuilder.newDocument();
@@ -172,7 +170,6 @@ public class CreateUser {
                 roott.appendChild(exponentt);
 
                 //Transformimi ne xml file
-					
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -182,7 +179,7 @@ public class CreateUser {
 
                 StreamResult streamResult = new StreamResult(filePub);
                 transformer.transform(domSource, streamResult);
-                System.out.println("Eshte krijuar celesi publik "+filePub.getPath());
+                System.out.println("Eshte krijuar celesi publik 'keys/" + name + ".xml'");
             } 
         
         } 
@@ -191,3 +188,4 @@ public class CreateUser {
         }
 }
 }
+// Referencat ne README.md
