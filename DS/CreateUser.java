@@ -28,6 +28,9 @@ public class CreateUser {
 			
             PublicKey publicK = keyP.getPublic();
             PrivateKey privateK = keyP.getPrivate();
+		
+            PrivateKeyXML(privateK, name);
+            PublicKeyXML(publicK, name);
             } 
       catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown : " + e);
@@ -40,7 +43,7 @@ public class CreateUser {
 	    File filePriv = new File(file.getPath()+"//"+ name +".xml");
 
 	    if (filePriv.exists()){
-		    System.out.print("Gabim: Celesi " + name + " ekziston paraprakisht!");
+		    System.out.print("Gabim: Celesi '" + name + "' ekziston paraprakisht!");
 	    }		
 	    else if(!filePriv.exists()){
                 KeyFactory keyF = KeyFactory.getInstance("RSA");
@@ -110,7 +113,7 @@ public class CreateUser {
                 d.appendChild(document.createTextNode(destr));
                 root.appendChild(d);
 
-	        //Transformimi prej .txt ne .xml 
+	        //Transformimi ne xml file
 						
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
@@ -126,6 +129,64 @@ public class CreateUser {
         
         } catch (NoSuchAlgorithmException e) {
 
+            System.out.println("Exception thrown : " + e);
+        }
+}
+	public static void PublicKeyXML(PublicKey publicKey, String name) throws Exception {
+
+        try {
+
+        File file = new File("c://RSAKeys");
+	    file.mkdir();
+	    File filePub = new File(file.getPath()+"//"+ name +".pub.xml");
+
+            if (filePub.exists()){
+            	System.out.print("");
+            	}
+		
+	       else if(!filePub.exists()){
+
+                KeyFactory keyF = KeyFactory.getInstance("RSA");
+                RSAPublicKeySpec keyS = keyF.getKeySpec(publicKey, RSAPublicKeySpec.class);
+
+                BigInteger mod = keyS.getModulus();
+                String modstr = new String(Base64.getEncoder().encodeToString(mod.toByteArray()));
+
+                BigInteger exp = keyS.getPublicExponent();
+                String expstr = new String(Base64.getEncoder().encodeToString(exp.toByteArray()));
+
+                
+                DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+                Document document = documentBuilder.newDocument();
+
+                Element roott = document.createElement("RSAKeyValue");
+                document.appendChild(roott);
+                
+                Element moduluss = document.createElement("Modulus");
+                moduluss.appendChild(document.createTextNode(modstr));
+                roott.appendChild(moduluss);
+                
+                Element exponentt = document.createElement("Exponent");
+                exponentt.appendChild(document.createTextNode(expstr));
+                roott.appendChild(exponentt);
+
+                //Transformimi ne xml file
+					
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+                DOMSource domSource = new DOMSource(document);
+
+                StreamResult streamResult = new StreamResult(filePub);
+                transformer.transform(domSource, streamResult);
+                System.out.println("Eshte krijuar celesi publik "+filePub.getPath());
+            } 
+        
+        } 
+        catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown : " + e);
         }
 }
