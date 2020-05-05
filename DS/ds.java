@@ -1,5 +1,5 @@
 
-public class DSgr6 {
+public class ds {
 	public static void main(String[] args) {
 
 		if (args[0].equals("Caesar")) {
@@ -43,7 +43,7 @@ public class DSgr6 {
                                         DeleteUser.fshij(args[1]);
                                 }
                                  else {
-                System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+                			System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
                                   }
 
 			} catch (Exception e) {
@@ -52,6 +52,25 @@ public class DSgr6 {
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
 			}
 		}
+		else if (args[0].equals("export-key")) {
+			try {
+				if (args.length==3){
+					ExportKey.export_pub_priv1(args[2],args[1]);
+			    }
+			    	else if (args.length==4){
+					ExportKey.export_pub_priv(args[2],args[1],args[3]);
+			    }
+			    	else{
+					System.out.println("Argumentet nuk jane ne rregull");
+					System.exit(1);
+			    }                 
+
+			} catch (Exception e) {
+
+				System.out.println("Nuk keni dhene argumente valide.");
+				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+				}
+			}
 		else if (args[0].equals("Vigenere")) {
 			try {
 				if (args[1].equals("decrypt")) {
