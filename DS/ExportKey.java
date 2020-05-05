@@ -46,20 +46,20 @@ public class ExportKey {
 	            e.printStackTrace();
 	        }
 	    }	 
-	private static void printKey(Document xmlDocument, String fileName) {
+	
+		 public static void printKey(Document xmlDocument)
+	    {
 	        TransformerFactory tf = TransformerFactory.newInstance();
 	        Transformer transformer;
 	        try {
 	            transformer = tf.newTransformer();
-	             
+	           
 	            StringWriter writer = new StringWriter();
 	            transformer.transform(new DOMSource(xmlDocument), new StreamResult(writer));
 	            String xmlString = writer.getBuffer().toString();   
 	            System.out.println(xmlString);          
-	             
-	            FileOutputStream outStream = new FileOutputStream(new File(fileName)); 
-	            transformer.transform(new DOMSource(xmlDocument), new StreamResult(outStream));
-	        }
+	            
+	           } 
 	        catch (TransformerException e) 
 	        {
 	            e.printStackTrace();
@@ -69,6 +69,7 @@ public class ExportKey {
 	            e.printStackTrace();
 	        }
 	    }
+	 
 
 
 }
