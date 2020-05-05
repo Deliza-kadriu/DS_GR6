@@ -21,7 +21,38 @@ public class DSgr6 {
 						"Nuk keni dhene argumente te mjaftueshme per te realizuar ndonje kod. Shkrimi i sakte i argumenteve duhet te jete si ne vijim:");
 				System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
 			}
-		} else if (args[0].equals("Vigenere")) {
+		} 
+		else if (args[0].equals("create-user")) {
+			try {
+				if (args[1].matches("[A-Za-z0-9_]+")) {
+                                        CreateUser.generateKey(args[1]);
+                                }
+                                 else {
+                System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+                                  }
+
+			} catch (Exception e) {
+
+				System.out.println("Nuk keni dhene argumente valide.");
+				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+			}
+		}
+		else if (args[0].equals("delete-user")) {
+			try {
+				if (args[1].matches("[A-Za-z0-9_]+")) {
+                                        DeleteUser.fshij(args[1]);
+                                }
+                                 else {
+                System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+                                  }
+
+			} catch (Exception e) {
+
+				System.out.println("Nuk keni dhene argumente valide.");
+				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+			}
+		}
+		else if (args[0].equals("Vigenere")) {
 			try {
 				if (args[1].equals("decrypt")) {
 					System.out.println(
