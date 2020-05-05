@@ -80,7 +80,7 @@ public class ExportKey {
 				if (public_key.exists()) {
 					Document xmlDoc = convertXMLFileToXMLDocument(String.valueOf(public_key));
 					
-					File pubnew =new File(newFile);
+					File pubnew =new File("keys/",newFile);
 					pubnew.createNewFile();
 					public_key.delete();
 					printKeyAndWriteKey(xmlDoc,pubnew);
@@ -99,7 +99,7 @@ public class ExportKey {
 				if (private_key.exists()) {
 					Document xmlDoc = convertXMLFileToXMLDocument(String.valueOf(private_key));
 					
-					File pubnew =new File(newFile);
+					File pubnew =new File("keys/",newFile);
 					pubnew.createNewFile();
 					private_key.delete();
 					printKeyAndWriteKey(xmlDoc,pubnew);
