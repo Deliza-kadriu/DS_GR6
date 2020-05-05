@@ -118,8 +118,48 @@ public class ExportKey {
 
 		}
 	}
+	
+	public static void export_pub_priv1(String name, String pri_pub) {
+		try {
+			File private_key = new File("keys/", name + ".xml");
+			File public_key = new File("keys/", name + ".pub.xml");
+			
+			if (pri_pub.equalsIgnoreCase("public")) {
+				
+				if (public_key.exists()) {
+					Document xmlDoc = convertXMLFileToXMLDocument(String.valueOf(public_key));	
+					printKey(xmlDoc);
+					
+					
+				}
+				else {
+					
+					System.out.println("Gabim : Qelesi publik \"" + name + "\" nuk ekziston");
+				
+				}
+			} 
+			
+			else if (pri_pub.equalsIgnoreCase("private")) {
+				
+				if (private_key.exists()) {
+					Document xmlDoc = convertXMLFileToXMLDocument(String.valueOf(private_key));
+					printKey(xmlDoc);
+					
+				} 
+				else {
+					
+					System.out.println("Gabim : Qelesi privat \"" + name + "\" nuk ekziston");
+
+				}
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
 
 
 }
-//Metoden printKey dhe convertXMLFileToXMLDocument e kame marre te gatshme nga faqja :
-//https://howtodoinjava.com/xml/xml-to-string-write-xml-file/
+//referencat gjenden ne readme 
