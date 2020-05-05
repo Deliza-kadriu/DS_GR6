@@ -68,7 +68,7 @@ public static void import_Key(String out, String path)
 	try {
 		if (path.matches("^(http|https|)://.*$")) {
 
-			File freshFile = new File("keys/" + out + ".pub.xml");
+			File freshFile = new File("keys\\" + out + ".pub.xml");
 
 			if (!freshFile.exists()) {
 
@@ -113,20 +113,7 @@ public static void import_Key(String out, String path)
 
 					Document doc = docBuilder.parse(file);
 
-					if (checkIfItsPublicOrPrivate(doc) == "public") {
-
-						File file1 = new File("keys\\", out + ".pub.xml");
-						if (file1.exists()) {
-
-							System.out.println("Celesi '" + out + "' ekziston paraprakisht");
-
-						} else {
-
-							file.renameTo(file1);
-							System.out.println("Celesi publik u ruajt ne fajllin \"keys\\" + out + ".pub.xml\".");
-
-						}
-					} else if (checkIfItsPublicOrPrivate(doc) == "private") {
+					 if (checkIfItsPublicOrPrivate(doc) == "private") {
 
 						File file1 = new File("keys\\" + out + ".pub.xml");
 						File privFile = new File("keys\\" + out + ".xml");
@@ -174,6 +161,20 @@ public static void import_Key(String out, String path)
 						System.out.println("Celesi publik u ruajt ne fajllin \"keys\\" + out + ".pub.xml\".");
 
 					}
+					else if (checkIfItsPublicOrPrivate(doc) == "public") {
+
+						File file1 = new File("keys\\", out + ".pub.xml");
+						if (file1.exists()) {
+
+							System.out.println("Celesi '" + out + "' ekziston paraprakisht");
+
+						} else {
+
+							file.renameTo(file1);
+							System.out.println("Celesi publik u ruajt ne fajllin \"keys\\" + out + ".pub.xml\".");
+
+						}
+					} 
 
 				} else if (!file.exists()) {
 
