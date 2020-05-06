@@ -102,7 +102,7 @@ public class ds {
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
 			}
 		}
-		else if (args[0].equalsIgnoreCase("read-message")) {
+		/*else if (args[0].equalsIgnoreCase("read-message")) {
 			try{
 	                ReadMessage.read(args[1]);
 	           
@@ -111,7 +111,7 @@ public class ds {
 			catch (Exception e){
 			System.out.println("Nuk keni dhene argumente valide.");
 			}
-	        }
+	        }*/
 		
 		else if (args[0].equals("Vigenere")) {
 			try {
