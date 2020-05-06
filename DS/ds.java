@@ -10,7 +10,7 @@ public class ds {
 					CaesarCipher.decrypt(args[3], Integer.parseInt(args[2]));
 				} else if (args[1].equals("bruteforce")) {
 					System.out.println("Dekriptimet me BruteForce:");
-					CaesarCipher.bruteForce(args[3]);
+					CaesarCipher.bruteForce(args[2]);
 				} else {
 					System.out.println("Shkrimi nuk eshte i sakte te metoda e Caesaar metoda eshte gabim duhet te jete si ne vazhdim  :");
 					System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
@@ -132,12 +132,7 @@ public class ds {
 
 		else {
 
-			System.out.println("Keni nje gabim ne sintakse. Shkrimi adekuat i argumenteve eshte : ");
-			System.out.println("Kodet: Caesar, Vigenere,Beale");
-			System.out.println("Metodat : encrypt, decrypt, bruteforce");
-			System.out.println(
-					"Celesi/path: Te metoda e caesarit eshte numer , te vigenere eshte fjale kurse te beale eshte path");
-			System.out.println("Teksti: Tekst i cfaredoeshem tek metoda e bealit duhet te jete nje varg i numave i ndare me presje p.sh: 14,10,10,54");
+			System.out.println("Keni gabime ne sintakse");
 			System.exit(1);
 		}
 	}
