@@ -85,6 +85,16 @@ public class ds {
 
 			    }
 			}
+		else if (args[0].equalsIgnoreCase("read-message")) {
+	            if (args.length == 2) {
+	                ReadMessage.read(args[1]);
+	           
+	            } else {
+	                System.out.println("Argumentet nuk jane ne rregull");
+	                System.exit(1);
+	            }
+	        }
+		
 		else if (args[0].equals("Vigenere")) {
 			try {
 				if (args[1].equals("decrypt")) {
