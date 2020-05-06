@@ -42,7 +42,7 @@ public class CreateUser {
             File filePriv = new File("keys/", name + ".xml");
 
 	    if (filePriv.exists()){
-		    System.out.print("Gabim: Celesi '" + name + "' ekziston paraprakisht!");
+		    System.out.println("Gabim: Celesi '" + name + "' ekziston paraprakisht!");
 	    }		
 	    else if(!filePriv.exists()){
                 KeyFactory keyF = KeyFactory.getInstance("RSA");
