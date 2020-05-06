@@ -137,12 +137,13 @@ public class ReadMessage {
 	}
 	public static void dpatxt(String message) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, ParserConfigurationException, SAXException, IOException, InvalidAlgorithmParameterException {
 		 try {
-		String[] strings = message.split("\\.");
-		 String emri = decode64(strings[0]);
+			String[] strings = message.split("\\.");
+		 	String emri = decode64(strings[0]);
 		    String decryptedKey = decode64(rsaDec(emri, strings[2]));
 		    String iv = decode64(strings[1]);
 		    byte [] ivDes = iv.getBytes();
 		    byte[] key = decryptedKey.getBytes();
+		    System.out.print(key);
 		    String plain = decode64(strings[3]);
             byte[] byteArray = Base64.getDecoder().decode(plain.getBytes());
 		    System.out.println("Marresi"+emri);
