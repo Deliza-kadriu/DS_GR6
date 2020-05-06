@@ -73,3 +73,5 @@ Nese thirrim opsionin e pare mesazhi shfaqet ne command line me println, kurse n
 -Komanda ReadMessage
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds read-message <mesazhi i enkriptuar>
                                                             ose: ds read-message <txt file ne te cilin eshte ruajtur mesazhi i enkriptuar>
+Referencat e perbashketa:
+www.howtodoinjava.com ,  www.stackoverflow.com , www.programcreek.com , www.geeksforgeeks.com , Libri :Introduction to Java programming
