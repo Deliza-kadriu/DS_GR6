@@ -1,3 +1,4 @@
+
 public class ds {
 	public static void main(String[] args) {
 
@@ -101,17 +102,22 @@ public class ds {
 				System.out.println("Nuk keni dhene argumente valide.");
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
 			}
-		}
-		/*else if (args[0].equalsIgnoreCase("read-message")) {
+			}
+		
+		else if (args[0].equalsIgnoreCase("read-message")) {
 			try{
+	            if (args.length == 2) {
 	                ReadMessage.read(args[1]);
 	           
-	           }
-			
+	            } else {
+	                System.out.println("Argumentet nuk jane ne rregull");
+	                System.exit(1);
+	            }
+			}
 			catch (Exception e){
 			System.out.println("Nuk keni dhene argumente valide.");
 			}
-	        }*/
+	        }
 		
 		else if (args[0].equals("Vigenere")) {
 			try {
@@ -164,3 +170,4 @@ public class ds {
 			System.exit(1);
 		}
 	}
+}
