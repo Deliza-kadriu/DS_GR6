@@ -74,9 +74,9 @@ public static String encode64(String str){
     return Base64.getEncoder().encodeToString(str.getBytes());
 }
 public static String DESenkriptimi(String mesazhi) throws InvalidKeySpecException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
-    Random keyi = new Random();
+    Random keyy = new Random();
     byte[] keys = new byte[8];
-    keyi.nextBytes(keys);
+    keyy.nextBytes(keys);
     KeySpec myKeySpec = new DESKeySpec(keys);
     SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("DES");
 
@@ -91,7 +91,7 @@ public static String DESenkriptimi(String mesazhi) throws InvalidKeySpecExceptio
 
     return encryptedWord;
 }
-public static byte [] RSAenkriptimi(String emri, String mesazhi) throws InvalidKeySpecException, UnsupportedEncodingException, InvalidKeyException, IOException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, SAXException, ParserConfigurationException {
+public static String RSAenkriptimi(String emri) throws InvalidKeySpecException, UnsupportedEncodingException, InvalidKeyException, IOException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, SAXException, ParserConfigurationException {
 
 File filePub = new File("keys/", emri + ".pub.xml");
 
