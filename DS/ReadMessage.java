@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -19,6 +20,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.DocumentBuilder;
@@ -144,12 +146,12 @@ public class ReadMessage {
 		    String plain = decode64(strings[3]);
             byte[] byteArray = Base64.getDecoder().decode(plain.getBytes());
 		    System.out.println("Marresi"+emri);
-		    SecretKey originalKey = new SecretKeySpec(key, 0, key.length, "DES");
-		    Cipher aesCipher = Cipher.getInstance("DES/CBC/PKCS5PADDING");
-		    aesCipher.init(Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec(ivDes));
+
+		    SecretKey originalKey = new SecretKeySpec(key, "DES");
 	
-		   
-		    byte[] bytePlainText = aesCipher.doFinal(byteArray);
+		    Cipher desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+		    desCipher.init(Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec(ivDes));
+		    byte[] bytePlainText = desCipher.doFinal(byteArray);
 		    String plainText = new String(bytePlainText);
 		    System.out.println("Mesazhi: "+plainText);}
 		    catch(Exception e) {
@@ -158,4 +160,5 @@ public class ReadMessage {
 		    }
 		  
 	}
+	
 }
