@@ -45,5 +45,31 @@ Shembujt jane ne vazhdim:
 ![photos](photos/Capture8.jpg)
 ![photos](photos/Capture9.jpg)
 
+FAZA 2:
 
+-Komanda CreateUser
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds create-user <emri> 
+Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i krijojme, kujdes pranon vetem karaktere 0-9 a-z A-Z apo underline.
 
+-Komanda DeleteUser
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds delete-user <emri> 
+Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i fshijme, kujdes nese ata celesa(njeri celes) ekzistojne emrin mund ta kene vetem me karakteret: 0-9 a-z A-Z apo underline.      
+  
+-Komanda ExportKey
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds export-key  <public|private> <emri> [file]
+Tek emri shkruhet emri i userit celesin e te cilit deshirojme ta perdorim, kujdes pranon vetem karaktere 0-9 a-z A-Z apo underline.
+Ne file shkruajme file ku deshirojme ta export-ojme ate celes.
+  
+-Komanda ImportKey
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds import-key <emri> <path>
+Ne file shkruajme file ku deshirojme ta ruajme ate celes.
+  
+-Komanda WriteMessage
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds write-message <emri> <mesazhi>
+                                                            ose: ds write-message <emri> <mesazhi> <file>
+Tek emri shkruhet emri i userit celesin e te cilit deshirojme ta perdorim, kujdes pranon vetem karaktere 0-9 a-z A-Z apo underline.
+Nese thirrim opsionin e pare mesazhi shfaqet ne command line me println, kurse nese thirrim opsionin e dyte mesazhi ruhet ne file-in e dhene .txt 
+
+-Komanda ReadMessage
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds read-message <mesazhi i enkriptuar>
+                                                            ose: ds read-message <txt file ne te cilin eshte ruajtur mesazhi i enkriptuar>
