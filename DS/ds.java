@@ -104,6 +104,7 @@ public class ds {
 			}
 		
 		else if (args[0].equalsIgnoreCase("read-message")) {
+			try{
 	            if (args.length == 2) {
 	                ReadMessage.read(args[1]);
 	           
@@ -111,6 +112,10 @@ public class ds {
 	                System.out.println("Argumentet nuk jane ne rregull");
 	                System.exit(1);
 	            }
+			}
+			catch (Exception e){
+			System.out.println("Nuk keni dhene argumente valide.");
+			}
 	        }
 		
 		else if (args[0].equals("Vigenere")) {
