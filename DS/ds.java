@@ -85,6 +85,22 @@ public class ds {
 
 			    }
 			}
+		
+		else if (args[0].equals("write-message")) {
+			try {
+				if(args.length==4) {
+				WriteMessage.writemessage(args[1], args[2], args[3]);
+			}
+			else {
+				WriteMessage.writemessagee(args[1], args[2]);
+			}
+
+			} catch (Exception e) {
+
+				System.out.println("Nuk keni dhene argumente valide.");
+				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+			}
+		
 		else if (args[0].equalsIgnoreCase("read-message")) {
 	            if (args.length == 2) {
 	                ReadMessage.read(args[1]);
