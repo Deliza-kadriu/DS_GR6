@@ -100,8 +100,8 @@ File filePub = new File("keys/", emri + ".pub.xml");
     Document doc = documentBuilder.parse(filePub);
     doc.getDocumentElement().normalize();
 	
-    String moduluss = document.getElementsByTagName("Modulus").item(0).getTextContent();
-    String exponentt = document.getElementsByTagName("Exponent").item(0).getTextContent();
+    String moduluss = doc.getElementsByTagName("Modulus").item(0).getTextContent();
+    String exponentt = doc.getElementsByTagName("Exponent").item(0).getTextContent();
 	
     BigInteger modulus = new BigInteger(Base64.getDecoder().decode(moduluss));
     BigInteger exponent = new BigInteger(Base64.getDecoder().decode(exponentt));
