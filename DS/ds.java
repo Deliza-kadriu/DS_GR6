@@ -91,10 +91,12 @@ public class ds {
 				if(args.length==4) {
 				WriteMessage.writemessage(args[1], args[2], args[3]);
 			}
-			else {
+			else if(args.length==3){
 				WriteMessage.writemessagee(args[1], args[2]);
 			}
-
+                        else {
+			System.out.println("Parametrat jane dhene gabim.");
+			}
 			} catch (Exception e) {
 
 				System.out.println("Nuk keni dhene argumente valide.");
