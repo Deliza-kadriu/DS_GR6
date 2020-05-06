@@ -1,4 +1,3 @@
-
 public class ds {
 	public static void main(String[] args) {
 
@@ -102,7 +101,7 @@ public class ds {
 				System.out.println("Nuk keni dhene argumente valide.");
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
 			}
-		
+		}
 		else if (args[0].equalsIgnoreCase("read-message")) {
 			try{
 	                ReadMessage.read(args[1]);
@@ -165,4 +164,3 @@ public class ds {
 			System.exit(1);
 		}
 	}
-}
