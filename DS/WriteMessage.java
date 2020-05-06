@@ -2,9 +2,7 @@ import org.w3c.dom.Document;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 import java.security.spec.KeySpec;
-
 import org.xml.sax.SAXException;
-
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.xml.parsers.DocumentBuilder;
@@ -13,37 +11,19 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-
 import java.security.*;
-
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
-
-
-import javax.crypto.*;
-import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.nio.charset.Charset;
-import java.security.*;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.security.spec.RSAPublicKeySpec;
-import java.util.Base64;
-import java.util.Random;
 
 public class WriteMessage {
 
@@ -54,15 +34,15 @@ public static void writemessage(String emri, String mesazhi, String fajlli) thro
         System.out.println("Gabim: Celesi publik "+emri+ " nuk ekziston.\n");
     }else {
         
-        String emrii = encode64(emri);
+       String emrii = encode64(emri);
 
-	      SecureRandom sr = new SecureRandom();
+	SecureRandom sr = new SecureRandom();
         byte[] ivD = new byte[8]; 
         sr.nextBytes(ivD);
    
         String iv = encode64(Arrays.toString(ivD));
         String Dess = encode64(DESenkriptimi(mesazhi));
-        String Rsaa = encode64(Arrays.toString(RSAenkriptimi(emri,mesazhi)));
+        String Rsaa = encode64(RSAenkriptimi(emri));
         String ciphertext = emrii+"."+iv+"."+Rsaa+"."+Dess;
         PrintWriter writer = new PrintWriter(fajlli, StandardCharsets.UTF_8);
         writer.println(ciphertext);
