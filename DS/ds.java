@@ -1,7 +1,10 @@
+import java.io.Console;
+import java.util.Scanner;
 
 public class ds {
 	public static void main(String[] args) {
-
+		Scanner input=new Scanner(System.in);
+		Console console = System.console();
 		if (args[0].equals("Caesar")) {
 			try {
 				if (args[1].equals("encrypt")) {
@@ -22,17 +25,27 @@ public class ds {
 				System.out.println("Pozita1:Kodi, Pozita2:Metoda, Pozita3:Celesi\\path, Pozita4:Teksti");
 			}
 		} 
-		else if (args[0].equals("create-user")) {
+	else if (args[0].equals("create-user")) {
 			try {
-				if (args[1].matches("[A-Za-z0-9_]+")) {
-                                        CreateUser.generateKey(args[1]);
-                                }
-                                 else {
+			 if (args[1].matches("[A-Za-z0-9_]+")) {
+			 char [] passwordi = console.readPassword("Jepni fjalekalimin: ");
+               		 String password = String.valueOf(passwordi);
+               		  if (password.matches("^(?=.*[a-zA-Z])(?=.*\\d).{6,}$")) {
+                    	  char [] perserit = console.readPassword("Perserit fjalekalimin: ");
+                    	  String perseritja = String.valueOf(perserit);
+                    	  //https://www.geeksforgeeks.org/java-io-console-class-java/
+                    	   if (password.equals(perseritja)) {
+                           CreateUser.generateKey(args[1], password);
+                         } else
+                           System.out.println("Gabim: Fjalekalimet nuk perputhen");
+                       } else{
+                        System.out.println("Gabim: Fjalekalimi duhet te permbaje se paku nje numer ose simbol.");
+                     }
+                     }
+                else {
                 System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
-                                  }
-
+                }
 			} catch (Exception e) {
-
 				System.out.println("Nuk keni dhene argumente valide.");
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
 			}
