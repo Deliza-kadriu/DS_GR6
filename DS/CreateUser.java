@@ -32,6 +32,7 @@ public class CreateUser {
 	    
             PrivateKeyXML(privateK, name);
             PublicKeyXML(publicK, name);
+	    DsDatabase.shtoNeDB(name,password);
             } 
       catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown : " + e);
