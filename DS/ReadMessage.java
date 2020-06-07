@@ -11,6 +11,7 @@ import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.security.spec.RSAPrivateCrtKeySpec;
 import java.security.spec.RSAPrivateKeySpec;
 import java.util.Base64;
@@ -21,6 +22,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.DocumentBuilder;
@@ -65,20 +67,25 @@ public class ReadMessage {
 	            String plain = decode64(stringss[3]);
                 byte[] byteArray = Base64.getDecoder().decode(plain.getBytes());
 
+				  KeySpec myKeySpec = new DESKeySpec(key);
+                    SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("DES");
+                    SecretKey celesi = secretKeyFactory.generateSecret(myKeySpec);
+
 	            String decodeemri = new String(emri);
                 System.out.println("Marresi: " + decodeemri);
-                SecretKey originalKey = new SecretKeySpec(key, 0, key.length, "DES");
-                Cipher aesCipher = Cipher.getInstance("DES/CBC/PKCS5PADDING");
-                aesCipher.init(Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec(ivDes));
+				
+               	Cipher decryptCipher = Cipher.getInstance("DES");
+                    decryptCipher.init(Cipher.DECRYPT_MODE, celesi);
+                    //   byte[] utf8 = Base64.getDecoder().decode(aListNumbers.get(3));
+                    byte[] dec = decryptCipher.doFinal(byteArray);
+                    String decryptedWord = new String(dec);
+                    System.out.println("Mesazhi:" + decryptedWord);
 
-
-                byte[] bytePlainText = aesCipher.doFinal(byteArray);
-                String plainText = new String(bytePlainText);
-                System.out.println("Mesazhi"+plainText);
                 }
                 
                 catch(Exception e) {
                 	System.out.println("error");
+                	System.out.print(e);
                 }
 
 		
@@ -89,61 +96,52 @@ public class ReadMessage {
 		String decodedString = new String(decodedBytes);
 		return decodedString;
 	}
+
 	private static String rsaDec(String emri, String ky) throws ParserConfigurationException, SAXException, IOException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException {
 		File file = new File("keys\\"+emri+".xml");
 		if(file.exists()) {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.parse(file);
-            Base64.Decoder decoder = Base64.getDecoder();
+            doc.getDocumentElement().normalize();
             String iModulus =doc.getElementsByTagName("Modulus").item(0).getTextContent();
-            byte[] modBytes = decoder.decode(iModulus.trim());
-            BigInteger modules = new BigInteger(1, modBytes);
-            String iExponentBytes =doc.getElementsByTagName("Exponent").item(0).getTextContent();
-            byte [] exp = decoder.decode(iExponentBytes.trim());
-            BigInteger iExponentBytes1 = new BigInteger(1,exp );
-            String iPBytes=doc.getElementsByTagName("P").item(0).getTextContent();
-            byte [] p = decoder.decode(iPBytes.trim());
-            BigInteger iPBytes1 = new BigInteger(1,p );
-            String iQBytes =doc.getElementsByTagName("Q").item(0).getTextContent();
-            byte [] q = decoder.decode(iQBytes.trim());
-            BigInteger iQBytes1= new BigInteger(1,q );
-            String iDPBytes =doc.getElementsByTagName("DP").item(0).getTextContent();
-            byte [] dp = decoder.decode(iDPBytes.trim());
-            BigInteger iDPBytes1= new BigInteger(1,dp );
-            String iDQBytes=doc.getElementsByTagName("DQ").item(0).getTextContent();
-            byte [] dq = decoder.decode(iDQBytes.trim());
-            BigInteger iDQBytes1= new BigInteger(1,dq );
-            String iInverseQBytes=doc.getElementsByTagName("InverseQ").item(0).getTextContent();
-            byte [] ib = decoder.decode(iInverseQBytes.trim());
-            BigInteger iInverseQBytes1= new BigInteger(1,ib );
+            
+            BigInteger modules = new BigInteger(decode64(iModulus).getBytes());
             String iDBytes=doc.getElementsByTagName("D").item(0).getTextContent();
-            byte []  d= decoder.decode(iDBytes.trim());
-            BigInteger iDBytes1= new BigInteger(1,d );
+            
+            BigInteger iDBytes1= new BigInteger(decode64(iDBytes).getBytes());
             
 
             KeyFactory factory = KeyFactory.getInstance("RSA");
-            RSAPrivateKeySpec privSpec = new RSAPrivateCrtKeySpec(modules,iExponentBytes1,iPBytes1,iQBytes1,iDPBytes1,iDQBytes1,iInverseQBytes1,iDBytes1);
+            RSAPrivateKeySpec privSpec = new RSAPrivateKeySpec(modules,iDBytes1);
             PrivateKey privKey = factory.generatePrivate(privSpec);
 
 
-            final Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 
-            rsa.init(Cipher.DECRYPT_MODE, privKey);
-            rsa.update(ky.getBytes());
-            return new String(rsa.doFinal());
+			
+            Cipher cipher = Cipher.getInstance("RSA");
+            cipher.init(Cipher.DECRYPT_MODE, privKey);
+            byte[] key = cipher.doFinal(decode64(ky).getBytes());
+            return new String(key);
+            
 		}
 		return null;
 	}
 	public static void dpatxt(String message) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, ParserConfigurationException, SAXException, IOException, InvalidAlgorithmParameterException {
 		 try {
 			String[] strings = message.split("\\.");
+			if (strings.length==4){
 		 	String emri = decode64(strings[0]);
+		 	System.out.print(emri);
 		    String decryptedKey = decode64(rsaDec(emri, strings[2]));
 		    String iv = decode64(strings[1]);
 		    byte [] ivDes = iv.getBytes();
+		    System.out.print(iv); 
+		    System.out.print(ivDes); 
+		    System.out.println(decryptedKey);
+		 
 		    byte[] key = decryptedKey.getBytes();
-		    System.out.print(key);
+		    
 		    String plain = decode64(strings[3]);
             byte[] byteArray = Base64.getDecoder().decode(plain.getBytes());
 		    System.out.println("Marresi"+emri);
@@ -154,7 +152,83 @@ public class ReadMessage {
 		    desCipher.init(Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec(ivDes));
 		    byte[] bytePlainText = desCipher.doFinal(byteArray);
 		    String plainText = new String(bytePlainText);
-		    System.out.println("Mesazhi: "+plainText);}
+		    System.out.println("Mesazhi: "+plainText);
+		 }
+			else{
+                try {
+
+                    byte[] emri = Base64.getDecoder().decode(strings[0]);
+                    String ivi = strings[1];
+                    String encrypti = strings[3];
+                    byte [] sender=Base64.getDecoder().decode(strings[4]);
+
+                    String senderName=new String(sender);
+
+                    byte[] decodedBytesKey = Base64.getDecoder().decode(strings[2]);
+
+
+
+                    String decodeemri = new String(emri);
+                    System.out.println("Marresi: " + decodeemri);
+
+
+                    File file = new File("keys/", decodeemri + ".xml");
+                    if (file.exists()) {
+                        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                        Document doc = docBuilder.parse(file);
+                        doc.getDocumentElement().normalize();
+
+                        String moduliS = doc.getElementsByTagName("Modulus").item(0).getTextContent();
+                        BigInteger modulus = new BigInteger(Base64.getDecoder().decode(moduliS));
+                        String D = doc.getElementsByTagName("D").item(0).getTextContent();
+                        BigInteger d = new BigInteger(Base64.getDecoder().decode(D));
+
+                        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+                        RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(modulus, d);
+                        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+
+
+                        Cipher cipher = Cipher.getInstance("RSA");
+                        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+                        byte[] key = cipher.doFinal(decodedBytesKey);
+
+                        KeySpec myKeySpec = new DESKeySpec(key);
+                        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("DES");
+                        SecretKey celesi = secretKeyFactory.generateSecret(myKeySpec);
+
+
+                        String a = strings[3];
+                        byte[] byteArray = Base64.getDecoder().decode(a.getBytes());
+
+
+                        Cipher decryptCipher = Cipher.getInstance("DES");
+                        decryptCipher.init(Cipher.DECRYPT_MODE, celesi);
+                        byte[] dec = decryptCipher.doFinal(byteArray);
+                        String decryptedWord = new String(dec);
+                        System.out.println("Mesazhi:" + decryptedWord);
+                        System.out.println("Derguesi: "+senderName);
+                        String nenshkrimi=strings[5];
+                        File file2=new File("keys/",senderName+".pub.xml");
+                        if (file2.exists())
+                        {
+                          boolean verifikimi=Login.verifiko(encrypti,senderName,nenshkrimi);
+                           if (verifikimi==true)
+                            System.out.println("Nenshkrimi: valid");
+                            else System.out.println("Nenshkrimi: jovalid");
+                        }
+                        else System.out.println("Mungon celesi publik '"+senderName+"'");
+
+                    } else {
+                        System.out.println("Gabim: Celesi privat '" + file + "' nuk ekziston.");
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }	
+		 }
+		 
 		    catch(Exception e) {
 		    	System.out.println("error");
 		    	System.out.println(e);
