@@ -82,4 +82,4 @@ Nese thirrim opsionin e pare mesazhi shfaqet ne command line me println, kurse n
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds read-message <mesazhi i enkriptuar>
                                                             ose: ds read-message <txt file ne te cilin eshte ruajtur mesazhi i enkriptuar>
 Referencat e perbashketa:
-www.howtodoinjava.com ,  www.stackoverflow.com , www.programcreek.com , www.geeksforgeeks.com , https://metamug.com/article/security/jwt-java-tutorial-create-verify.html, https://developer.okta.com/blog/2018/10/31/jwts-with-java, Libri :Introduction to Java programming
+www.howtodoinjava.com ,  www.stackoverflow.com , www.programcreek.com , www.geeksforgeeks.com , https://metamug.com/article/security/jwt-java-tutorial-create-verify.html , https://developer.okta.com/blog/2018/10/31/jwts-with-java , https://www.geeksforgeeks.org/java-io-console-class-java , Libri :Introduction to Java programming
