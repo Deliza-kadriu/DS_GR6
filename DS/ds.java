@@ -2,7 +2,7 @@ import java.io.Console;
 import java.util.Scanner;
 
 public class ds {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner input=new Scanner(System.in);
 		Console console = System.console();
 		if (args[0].equals("Caesar")) {
