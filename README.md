@@ -49,11 +49,11 @@ FAZA 2 dhe 3:
 
 -Komanda CreateUser
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds create-user <emri> 
-Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i krijojme, kujdes pranon vetem karaktere 0-9 a-z A-Z apo underline.
+Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i krijojme, kujdes pranon vetem karaktere 0-9 a-z A-Z apo underline. Pas shkrimit te emrit kerkohet shkrimi i password-it i cili behet pa echo te simboleve ne ekran. Me pas ruhen ato te dhena te shfrytezuesit te krijuar ne databaze.
 
 -Komanda DeleteUser
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds delete-user <emri> 
-Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i fshijme, kujdes nese ata celesa(njeri celes) ekzistojne emrin mund ta kene vetem me karakteret: 0-9 a-z A-Z apo underline.      
+Tek emri shkruhet emri i userit celesat e te cilit deshirojme t'i fshijme, kujdes nese ata celesa(njeri celes) ekzistojne emrin mund ta kene vetem me karakteret: 0-9 a-z A-Z apo underline. Me kete rast fshihen edhe te gjitha te dhenat ekzistuese te atij user-i ne databaze. 
   
 -Komanda ExportKey
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds export-key  <public|private> <emri> [file]
