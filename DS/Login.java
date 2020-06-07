@@ -207,7 +207,37 @@ public class Login {
         }
 
     }
-    
+    public static void verifiko(String emri,String pass) throws Exception {
+
+        Connection MyConn = null;
+		MyConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/databazasd","root","");
+    	String query="Select Salti from shfrytesuesit where emri='"+ emri +"'";
+    	Statement s1 = MyConn.createStatement();
+        ResultSet rs1=s1.executeQuery(query);
+        rs1.next();
+        byte[] salt = new byte[8];
+    	salt = rs1.getBytes(1);
+        String pwHash=DsDatabase.get_SHA_256_SecurePassword(pass,salt);
+        
+        try {
+            String verifiko="Select * from shfrytesuesit where emri='"+emri+"' and Passwordi='"+pwHash+"'";
+            Statement s = MyConn.createStatement();
+            ResultSet rs=s.executeQuery(verifiko);
+            if (rs.next()==false){
+                System.out.println("Gabim: Shfrytezuesi ose fjalekalimi i gabuar.");
+                
+            }
+            else
+            {
+                Login.login(emri);
+               // System.out.println("a");
+            }
+        }
+        catch (SQLException err){
+            System.out.println(err.getMessage());
+        }
+       
+    }
     
 
 
