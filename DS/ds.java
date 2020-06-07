@@ -33,7 +33,6 @@ public class ds {
                		  if (password.matches("^(?=.*[a-zA-Z])(?=.*\\d).{6,}$")) {
                     	  char [] perserit = console.readPassword("Perserit fjalekalimin: ");
                     	  String perseritja = String.valueOf(perserit);
-                    	  //https://www.geeksforgeeks.org/java-io-console-class-java/
                     	   if (password.equals(perseritja)) {
                            CreateUser.generateKey(args[1], password);
                          } else
@@ -54,6 +53,7 @@ public class ds {
 			try {
 				if (args[1].matches("[A-Za-z0-9_]+")) {
                                         DeleteUser.fshij(args[1]);
+					DsDatabase.fshijNgaDB(args[1]);
                                 }
                                  else {
                 			System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
