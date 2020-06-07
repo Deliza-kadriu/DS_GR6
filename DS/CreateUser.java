@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 
 public class CreateUser {
 
-    public static void generateKey(String name) throws Exception {
+    public static void generateKey(String name, String password) throws Exception {
         try {
 	    //Gjenerimi i RSA celesave 
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
