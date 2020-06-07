@@ -184,7 +184,7 @@ public class Login {
 
         } else System.out.println("Jo Valid");
     }
-    public static void gjeje(String username) throws Exception {
+    public static boolean gjeje(String username) throws Exception {
 
 
         try {
@@ -195,9 +195,11 @@ public class Login {
             ResultSet resultSet1 = statement.executeQuery(checkusername);
             if (resultSet1.next() == false) {
                 System.out.println("Useri nuk ekziston");
+                return false;
             } else {
-
-                System.out.println("User: "+username);
+            	System.out.println("User: "+username);
+            	return true;
+                        
               }
             }
 
@@ -205,6 +207,7 @@ public class Login {
          catch (SQLException err) {
             System.out.println(err.getMessage());
         }
+		return false;
 
     }
     public static void verifiko(String emri,String pass) throws Exception {
@@ -220,17 +223,16 @@ public class Login {
         String pwHash=DsDatabase.get_SHA_256_SecurePassword(pass,salt);
         
         try {
-            String verifiko="Select * from shfrytesuesit where emri='"+emri+"' and Passwordi='"+pwHash+"'";
+            String verifiko="Select Salti from shfrytesuesit where emri='"+emri+"' and Passwordi='"+pwHash+"'";
             Statement s = MyConn.createStatement();
             ResultSet rs=s.executeQuery(verifiko);
             if (rs.next()==false){
                 System.out.println("Gabim: Shfrytezuesi ose fjalekalimi i gabuar.");
-                
+                //Login.login(emri);
             }
             else
             {
                 Login.login(emri);
-               // System.out.println("a");
             }
         }
         catch (SQLException err){
