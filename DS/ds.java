@@ -101,9 +101,12 @@ public class ds {
 		
 		else if (args[0].equals("write-message")) {
 			try {
-				if(args.length==4) {
-				WriteMessage.writemessage(args[1], args[2], args[3]);
-			}
+				if (args.length == 4) {
+	                if (args[3].length() > 20) {
+	                    WriteMessage.write_messageSender(args[1], args[2], args[3]);
+					} else
+	                    WriteMessage.writemessage(args[1], args[2], args[3]);
+	                    }
 			else if(args.length==3){
 				WriteMessage.writemessagee(args[1], args[2]);
 			}
@@ -114,6 +117,7 @@ public class ds {
 
 				System.out.println("Nuk keni dhene argumente valide.");
 				System.out.println("Argumenti i dyte mund te permbaje vetem karakteret: shkronja, numra ose underline");
+				System.out.print(e);
 			}
 			}
 		
@@ -131,6 +135,25 @@ public class ds {
 			System.out.println("Nuk keni dhene argumente valide.");
 			}
 	        }
+		else if (args[0].equalsIgnoreCase("login")) {
+            if (args.length != 2) {
+                System.out.println("Argumentet nuk jane ne rregull");
+                System.exit(1);
+            } else {
+
+                char[] passwordi = console.readPassword("Jepni fjalekalimin: ");
+                String password = String.valueOf(passwordi);
+                Login.verifiko(args[1], password);
+                //Login.login(args[1]);
+            }
+        } else if (args[0].equalsIgnoreCase("status")) {
+            if (args.length != 2) {
+                System.out.println("Argumentet nuk jane ne rregull");
+                System.exit(1);
+            } else {
+                Login.statusi(args[1]);
+            }
+        }
 		
 		else if (args[0].equals("Vigenere")) {
 			try {
