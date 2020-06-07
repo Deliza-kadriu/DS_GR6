@@ -45,7 +45,7 @@ Shembujt jane ne vazhdim:
 ![photos](photos/Capture8.jpg)
 ![photos](photos/Capture9.jpg)
 
-FAZA 2:
+FAZA 2 dhe 3:
 
 -Komanda CreateUser
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds create-user <emri> 
@@ -63,6 +63,14 @@ Ne file shkruajme file ku deshirojme ta export-ojme ate celes.
 -Komanda ImportKey
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds import-key <emri> <path>
 Ne file shkruajme file ku deshirojme ta ruajme ate celes.
+ 
+-Komanda Login
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds login <emri> 
+Kjo komand e mundeson qe kur te logohet te krijohet nje token ne folderin Tokens/ qe skadon pas 20 minutave.
+
+-Komanda Status 
+Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds status <token> 
+Kjo komande e shikon se a eshte valid tokeni i krijuar apo jo.
   
 -Komanda WriteMessage
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds write-message <emri> <mesazhi>
@@ -74,4 +82,4 @@ Nese thirrim opsionin e pare mesazhi shfaqet ne command line me println, kurse n
 Shkrimi adekuat i argumenteve per thirrjen e kesaj metode eshte: ds read-message <mesazhi i enkriptuar>
                                                             ose: ds read-message <txt file ne te cilin eshte ruajtur mesazhi i enkriptuar>
 Referencat e perbashketa:
-www.howtodoinjava.com ,  www.stackoverflow.com , www.programcreek.com , www.geeksforgeeks.com , Libri :Introduction to Java programming
+www.howtodoinjava.com ,  www.stackoverflow.com , www.programcreek.com , www.geeksforgeeks.com , https://metamug.com/article/security/jwt-java-tutorial-create-verify.html, https://developer.okta.com/blog/2018/10/31/jwts-with-java, Libri :Introduction to Java programming
